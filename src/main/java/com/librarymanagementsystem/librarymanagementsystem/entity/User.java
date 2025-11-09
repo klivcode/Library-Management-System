@@ -4,6 +4,8 @@ package com.librarymanagementsystem.librarymanagementsystem.entity;
 import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Set;
+
 @RequiredArgsConstructor
 @Entity
 @Table(name = "user")
@@ -19,6 +21,9 @@ public class User {
 
     @Column(name = "email",length = 50,nullable = false)
     private String email;
+
+    @OneToMany(mappedBy = "user")
+    private Set<Borrow> borrows;
 
 
     public User(Integer userId, String name, String email) {

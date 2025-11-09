@@ -4,6 +4,8 @@ package com.librarymanagementsystem.librarymanagementsystem.entity;
 import jakarta.persistence.*;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Set;
+
 
 @RequiredArgsConstructor
 @Entity
@@ -23,6 +25,10 @@ public class Book {
     @ManyToOne
     @JoinColumn(name = "publisher_id",nullable = false)
     private Publisher publisher;
+
+    @OneToMany(mappedBy = "book")
+    private Set<Borrow> borrows;
+
 
     public Book(Integer bookId, String title, Author author, Publisher publisher) {
         this.bookId = bookId;
